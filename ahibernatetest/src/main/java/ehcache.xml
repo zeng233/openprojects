@@ -1,0 +1,47 @@
+<ehcache>
+	<!-- 如果hibernate.cgf.xml中没有配置区域hibernate.cache.region_prefix那么久使用此默认的defaultCache缓存 -->
+	
+	<!-- maxElementsInMemory，Sets the maximum number of objects that will be created in memory -->
+	<!-- eternal，Sets whether elements are eternal(永恒的). If eternal, timeouts are ignored and the element is never expired -->
+	<!-- timeToIdleSeconds，当eternal为FALSE不少永久的时候才起作用，表示闲置n秒后销毁-->
+	<!-- timeToLiveSeconds，存活N秒后销毁 -->
+	<!-- 当缓存超过最大容量，是否存到硬盘上 -->
+	<!-- memoryStoreEvictionPolicy：存储算法FIFO（先进先出stackoverflow），LFU（Least Frequently Used），LRU（Least Recently Used） -->
+    <defaultCache
+        maxElementsInMemory="10000"
+        eternal="false"
+        timeToIdleSeconds="1200"
+        timeToLiveSeconds="1200"
+        overflowToDisk="false"
+        memoryStoreEvictionPolicy="FIFO"/>
+        
+      <!-- name默认名称为类的路径，也可以自定义 -->
+   	<cache name="com.hibernate.model.o2mbid.Order"
+        maxElementsInMemory="1000"
+        eternal="false"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        overflowToDisk="true"
+        />
+        <!-- 缓存集合 -->
+   	<cache name="com.hibernate.model.o2mbid.Customer.orders"
+        maxElementsInMemory="1000"
+        eternal="false"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        overflowToDisk="true"
+        />
+        
+    <cache
+        name="org.hibernate.cache.StandardQueryCache"
+        maxElementsInMemory="5000"
+        eternal="false"
+        timeToLiveSeconds="3600"
+        overflowToDisk="false"/>
+	<!-- 缓存时间戳，更新缓存时间 -->
+    <cache
+        name="org.hibernate.cache.UpdateTimestampsCache"
+        maxElementsInMemory="5000"
+        eternal="true"
+        overflowToDisk="true"/>
+</ehcache>
