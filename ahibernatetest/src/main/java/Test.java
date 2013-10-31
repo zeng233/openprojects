@@ -17,7 +17,7 @@ import com.hibernate.util.HibernateUtil;
  */
 
 public class Test {
-	public static void main(String[] args) {
+	public static void main(String[] args) { 
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = null;
